@@ -2,7 +2,7 @@
 
 ## 📝 Project Overview
 
-**J2EE-WS-Jersey** is a simple yet robust Java EE project that demonstrates how to build RESTful web services using the Jersey framework (JAX-RS reference implementation). The project showcases the creation of REST endpoints, MVC integration with JSP views, and the use of request/response filters for middleware logic. This is ideal for learning modern REST API development and middleware patterns in enterprise Java applications[1][2][3].
+**J2EE-WS-Jersey** is a simple yet robust Java EE project that demonstrates how to build RESTful web services using the Jersey framework (JAX-RS reference implementation). The project showcases the creation of REST endpoints, MVC integration with JSP views, and the use of request/response filters for middleware logic. This is ideal for learning modern REST API development and middleware patterns in enterprise Java applications.
 
 ---
 
