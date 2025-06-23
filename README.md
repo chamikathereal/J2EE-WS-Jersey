@@ -6,6 +6,11 @@
 
 ---
 
+## 📽️ Demo Video
+[![J2EE-WS-Jersey Project Demo](https://github.com/chamikathereal/J2EE-WS-Jersey/blob/main/J2EE-WS-Jersey.png)](https://youtu.be/ClSRi57aYtw)
+
+---
+
 ## 🗂️ Project Structure
 
 ```
