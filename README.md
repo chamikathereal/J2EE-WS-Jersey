@@ -2,7 +2,7 @@
 
 ## 📝 Project Overview
 
-**J2EE-WS-Jersey** is a simple yet robust Java EE project that demonstrates how to build RESTful web services using the Jersey framework (JAX-RS reference implementation). The project showcases the creation of REST endpoints, MVC integration with JSP views, and the use of request/response filters for middleware logic. This is ideal for learning modern REST API development and middleware patterns in enterprise Java applications.
+**J2EE-WS-Jersey** is a practical Java EE project that demonstrates how to build RESTful web services using the Jersey framework (JAX-RS reference implementation). This project covers REST API endpoint creation, MVC integration with JSP, multipart file uploads, dependency injection, and middleware patterns using request and response filters. It’s perfect for developers looking to learn modern REST API development and middleware integration in enterprise Java applications.
 
 ---
 
@@ -19,57 +19,78 @@ J2EE-WS-Jersey/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── lk.jlat.app.jersey/
+│   │   │       ├── annotation/
+│   │   │       │   └── UserBind
 │   │   │       ├── config/
-│   │   │       │   └── AppConfig
+│   │   │       │   ├── AppConfig
+│   │   │       │   └── DependencyBinder
 │   │   │       ├── controller/
 │   │   │       │   └── HomeController
-│   │   │       └── middleware/
-│   │   │           ├── RequestFilter
-│   │   │           └── ResponseFilter
+│   │   │       ├── middleware/
+│   │   │       │   ├── RequestFilter
+│   │   │       │   └── ResponseFilter
+│   │   │       └── model/
+│   │   │           └── User
 │   │   ├── resources/
 │   │   └── webapp/
+│   │       ├── upload/
 │   │       └── WEB-INF/
 │   │           ├── views/
 │   │           │   └── index.jsp
 │   │           └── web.xml
+│   └── test/
 ├── pom.xml
 ```
-
 
 ---
 
 ## 📦 Module Details
 
+#### 🟦 **annotation**
+- **UserBind**  
+  Custom annotation for name binding, enabling targeted middleware or dependency injection for user-related resources.
+
+  ##
+
 #### 🟦 **config**
 - **AppConfig**  
-  Jersey application configuration class. Registers controller and middleware packages, sets up JSP MVC integration, and configures the base path for REST endpoints.
+  Jersey application configuration class. Registers controller and middleware packages, enables JSP MVC integration, and sets the template base path.
+- **DependencyBinder**  
+  Configures dependency injection for the `User` model using HK2.
 
-##
+  ##
 
 #### 🟦 **controller**
 - **HomeController**  
-  REST controller mapped to `/`. Handles GET requests and renders the `index.jsp` view with a dynamic model.
-
-##
+  Handles root REST endpoints and file uploads.  
+  - `GET /` renders the JSP view with a dynamic model.
+  - `POST /file_upload` supports multipart file uploads and saves files to the server.
+ 
+  ##
 
 #### 🟦 **middleware**
 - **RequestFilter**  
-  Container request filter for logging or preprocessing all incoming REST requests.
-  
+  Logs or preprocesses all incoming REST requests.
 - **ResponseFilter**  
-  Container response filter for logging or modifying all outgoing REST responses.
+  (Can be enabled) Handles logging or modification of outgoing REST responses.
 
-##
+  ##
+
+#### 🟦 **model**
+- **User**  
+  Request-scoped POJO representing user data, supporting dependency injection and annotation-based binding.
+
+  ##
 
 #### 🟦 **webapp/WEB-INF/views**
 - **index.jsp**  
-  JSP view rendered by Jersey's MVC feature, displaying dynamic content from the REST controller.
+  JSP view rendered by Jersey’s MVC feature, displaying dynamic content from the controller.
 
-##
+  ##
 
 #### 🟦 **webapp/WEB-INF**
 - **web.xml**  
-  Deployment descriptor configuring Jersey's servlet filter, application class, and URL mapping for REST endpoints.
+  Configures Jersey’s servlet filter, application class, and URL mapping for REST endpoints.
 
 ---
 
@@ -77,25 +98,29 @@ J2EE-WS-Jersey/
 
 - ✅ RESTful API endpoints built with Jersey (JAX-RS)
 - ✅ MVC integration with JSP for dynamic web views
-- ✅ Request and response filters for middleware logic
-- ✅ Clean, modular package structure for easy extension
-- ✅ Maven-based build for streamlined setup and deployment
+- ✅ Multipart file upload support
+- ✅ Dependency injection with HK2 and custom binding
+- ✅ Middleware logic using request and response filters
+- ✅ Clean, modular Maven project structure
 
 ---
 
 ## 💡 How It Works
 
 - **Jersey Configuration:**  
-  `AppConfig` sets up the Jersey application, registering controllers and middleware, and enabling JSP support for MVC-style views.
+  `AppConfig` sets up the Jersey application, registers controllers and middleware, and enables JSP support for MVC-style views.
   
 - **REST Controller:**  
-  `HomeController` handles HTTP GET requests, populates a model, and renders `index.jsp` using Jersey's MVC feature.
+  `HomeController` handles HTTP GET requests for the home page and POST requests for file uploads, saving files to the `/upload` directory.
+  
+- **Dependency Injection:**  
+  `DependencyBinder` ensures the `User` model can be injected where needed.
   
 - **Middleware Filters:**  
-  `RequestFilter` and `ResponseFilter` allow pre- and post-processing of HTTP requests and responses, ideal for logging, authentication, or custom headers.
+  `RequestFilter` logs or processes incoming requests; `ResponseFilter` (optional) can log or modify outgoing responses.
   
 - **JSP View:**  
-  The `index.jsp` file displays dynamic content passed from the controller, demonstrating seamless REST-to-view integration.
+  `index.jsp` displays dynamic content from the model, demonstrating REST-to-view integration.
 
 ---
 
@@ -103,17 +128,20 @@ J2EE-WS-Jersey/
 
 - Java 11
 - Jakarta EE 10 (JAX-RS)
-- Jersey (MVC, Filters)
+- Jersey (MVC, Filters, Multipart)
 - JSP
 - Maven
+- Commons IO
 
 ---
 
 ## 📚 Learning Outcomes
 
-- ✅ Understand RESTful service development with Jersey in Java EE
+- ✅ Build RESTful web services with Jersey in Java EE
 - ✅ Integrate MVC patterns with REST endpoints and JSP views
-- ✅ Implement middleware logic using request and response filters
+- ✅ Implement multipart file uploads in REST APIs
+- ✅ Use dependency injection and annotation-based binding
+- ✅ Apply middleware logic with request and response filters
 - ✅ Structure enterprise Java projects for clarity and maintainability
 
 ---
@@ -123,4 +151,4 @@ J2EE-WS-Jersey/
 Chamika Gayashan  
 Undergraduate Software Engineer | Sri Lanka  
 Linkedin: @chamikathereal  
-Current date: Monday, June 23, 2025, 7:16 PM +0530
+Current date: Tuesday, June 24, 2025, 8:46 PM +0530
