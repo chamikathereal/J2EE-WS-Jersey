@@ -47,6 +47,10 @@ public class HomeController {
 
         body.getParent().getBodyParts().forEach(part -> {
 
+            //-> for one file
+            //InputStream content = body.getContent();
+
+            // -> for multiple files
             InputStream is = part.getEntityAs(InputStream.class);
 
             String fileName = body.getContentDisposition().getFileName();
@@ -68,11 +72,13 @@ public class HomeController {
                 }
 
                 FileOutputStream out =
-                        new FileOutputStream(new File(uploadPath+"/"+System.currentTimeMillis()+"."+extension));
+                        new FileOutputStream(new File(uploadPath+"/" + System.currentTimeMillis()+"."+extension));
 
                 while ((read = is.read(buffer)) != -1) {
                     out.write(buffer, 0, read);
                 }
+
+                //Thread.sleep(100);
 
                 out.flush();
                 out.close();
